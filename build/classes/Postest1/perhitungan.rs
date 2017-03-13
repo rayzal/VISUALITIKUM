@@ -1,0 +1,9 @@
+perhitungan$6
+perhitungan$5
+perhitungan$4
+perhitungan$3
+perhitungan$2
+perhitungan$1
+perhitungan
+perhitungan$8
+perhitungan$7
