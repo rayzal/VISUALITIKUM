@@ -445,7 +445,7 @@ public class customerForm extends javax.swing.JFrame {
         seluruh =  totalharga - totalDiskon;
         jHarga.setText("Rp.  "+seluruh);
         } else if(jExpress.isSelected()){
-        totalharga = (11500* beratBR)*1/2;
+        totalharga = (float) ((11500* beratBR)*1.5);
         totalDiskon =  totalharga*(diskon/100);
         seluruh =  totalharga - totalDiskon;
         jHarga.setText("Rp.  "+seluruh);
