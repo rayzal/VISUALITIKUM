@@ -498,7 +498,7 @@ public class customerForm extends javax.swing.JFrame {
     //AGAR INPUTAN NO TELEPON HANYA ANGKA
     private void jNTeleponKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNTeleponKeyTyped
         // TODO add your handling code here:
-               if (JNama.getText().length()>0&&jNTelepon.getText().length()>0&&jberat1.getText().length()>0){
+               if (JNama.getText().length()>0&&jNTelepon.getText().length()>0&&jberat1.getText().length()!=0){
                jProses.setEnabled(true); }
         else {
                jProses.setEnabled(false); }
@@ -513,7 +513,7 @@ public class customerForm extends javax.swing.JFrame {
  //AGAR INPUTAN BERAT BARANG HANYA ANGKA
     private void jberat1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jberat1KeyTyped
         // TODO add your handling code here:
-             if (JNama.getText().length()>0&&jNTelepon.getText().length()>0&&jberat1.getText().length()>0){
+             if (JNama.getText().length()>0&&jNTelepon.getText().length()>0&&jberat1.getText().length()!=0){
                jProses.setEnabled(true); }
         else {
                jProses.setEnabled(false); }
@@ -529,7 +529,7 @@ public class customerForm extends javax.swing.JFrame {
 
     private void JNamaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JNamaKeyTyped
         // TODO add your handling code here:
-        if (JNama.getText().length()>0&&jNTelepon.getText().length()>0&&jberat1.getText().length()>0){
+        if (JNama.getText().length()>0&&jNTelepon.getText().length()>0&&jberat1.getText().length()!=0){
                jProses.setEnabled(true); }
         else {
                jProses.setEnabled(false); }
