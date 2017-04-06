@@ -128,6 +128,7 @@ public class rumahSakit extends javax.swing.JFrame {
         cmbDokter = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         Keluar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
@@ -191,12 +192,27 @@ public class rumahSakit extends javax.swing.JFrame {
         txtTL.setBackground(new java.awt.Color(204, 255, 153));
         txtTL.setToolTipText("format penulisan tanggal :\n2017-04-10");
         txtTL.setEnabled(false);
+        txtTL.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTLCaretUpdate(evt);
+            }
+        });
 
         txtNama.setBackground(new java.awt.Color(204, 255, 153));
         txtNama.setEnabled(false);
+        txtNama.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtNamaCaretUpdate(evt);
+            }
+        });
 
         txtUsia.setBackground(new java.awt.Color(204, 255, 153));
         txtUsia.setEnabled(false);
+        txtUsia.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtUsiaCaretUpdate(evt);
+            }
+        });
         txtUsia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUsiaKeyTyped(evt);
@@ -227,7 +243,7 @@ public class rumahSakit extends javax.swing.JFrame {
 
         jLDiagnosa.setBackground(new java.awt.Color(204, 255, 153));
         jLDiagnosa.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Kanker ", "TBC", "Alergi", "Tumor", "Miopi", "Diabetes Melitus", "Asam Urat" };
+            String[] strings = { "Kanker ", "TBC", "Alergi", "Tumor", "Miopi", "Diabetes Melitus", "Asam Urat", "Demam", "Diare", "Sakit Hati", "Galau", "Sakit Gigi" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -240,6 +256,11 @@ public class rumahSakit extends javax.swing.JFrame {
         txtTglMasuk.setBackground(new java.awt.Color(204, 255, 153));
         txtTglMasuk.setToolTipText("format penulisan tanggal :\n2017-04-10");
         txtTglMasuk.setEnabled(false);
+        txtTglMasuk.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTglMasukCaretUpdate(evt);
+            }
+        });
 
         cmbDokter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "dr. Gatot C. Sasmita, SpP  ", "dr. Saharawati Mahmudin, SpP  ", "dr. Satrio Tjondro, SpRM  ", "dr. A. Kosasi, SpKK  ", "dr. Ade Indrawan I, SpRad" }));
         cmbDokter.setEnabled(false);
@@ -251,6 +272,9 @@ public class rumahSakit extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 0, 0));
         jLabel7.setText("* Format YYYY-MM-DD");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setText("Tahun");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -272,7 +296,10 @@ public class rumahSakit extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsia, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txtUsia, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9))
                             .addComponent(txtNama)
                             .addComponent(txtTL, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -312,7 +339,8 @@ public class rumahSakit extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txtUsia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtUsia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -533,7 +561,7 @@ public class rumahSakit extends javax.swing.JFrame {
         cmbDokter.setEnabled(true);
         cmbRuangan.setEnabled(true);
         txtCari.setEnabled(true);
-        Simpan.setEnabled(true);
+       
         comboCari.setEnabled(true);
 
     }//GEN-LAST:event_tambahActionPerformed
@@ -589,7 +617,7 @@ public class rumahSakit extends javax.swing.JFrame {
             rss = stt. executeQuery(sql);
           ResultSet rss=stt.executeQuery(sql);
             while (rss.next()) {
-                Object[] o=new Object[9];
+                Object[] o=new Object[8];
             o[0] = rss.getString("nama_pasien");
             o[1]= rss.getDate("tl");
             o[2] = rss.getInt("usia");
@@ -612,6 +640,7 @@ public class rumahSakit extends javax.swing.JFrame {
         // TODO add your handling code here:
         InitTable();
         TampilData();
+        
     }//GEN-LAST:event_formComponentShown
 
     private void txtUsiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsiaKeyTyped
@@ -623,6 +652,44 @@ public class rumahSakit extends javax.swing.JFrame {
     evt.consume();
        }
     }//GEN-LAST:event_txtUsiaKeyTyped
+
+    private void txtNamaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNamaCaretUpdate
+        // TODO add your handling code here:
+        if (txtNama.getText().length()==0 || txtNama.getText().equalsIgnoreCase("0") )
+            Simpan.setEnabled(false);
+        
+            else if (txtNama.getText().length()!=0  &&  txtTL.getText().length()!=0 
+                    && txtUsia.getText().length()!=0  && txtTglMasuk.getText().length()!=0  )
+                Simpan.setEnabled(true);          
+        
+    }//GEN-LAST:event_txtNamaCaretUpdate
+
+    private void txtTLCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTLCaretUpdate
+        // TODO add your handling code here:
+          if (txtTL.getText().length()==0 || txtTL.getText().equalsIgnoreCase("0") )
+            Simpan.setEnabled(false);
+            else if (txtNama.getText().length()!=0  &&  txtTL.getText().length()!=0 
+                    && txtUsia.getText().length()!=0  && txtTglMasuk.getText().length()!=0  )
+                Simpan.setEnabled(true);          
+    }//GEN-LAST:event_txtTLCaretUpdate
+
+    private void txtUsiaCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtUsiaCaretUpdate
+        // TODO add your handling code here:
+              if (txtUsia.getText().length()==0 || txtUsia.getText().equalsIgnoreCase("0") )
+            Simpan.setEnabled(false);
+            else if (txtNama.getText().length()!=0  &&  txtTL.getText().length()!=0 
+                    && txtUsia.getText().length()!=0  && txtTglMasuk.getText().length()!=0  )
+                Simpan.setEnabled(true);         
+    }//GEN-LAST:event_txtUsiaCaretUpdate
+
+    private void txtTglMasukCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTglMasukCaretUpdate
+        // TODO add your handling code here:
+              if (txtTglMasuk.getText().length()==0 || txtTglMasuk.getText().equalsIgnoreCase("0") )
+            Simpan.setEnabled(false);
+            else if (txtNama.getText().length()!=0  &&  txtTL.getText().length()!=0 
+                    && txtUsia.getText().length()!=0  && txtTglMasuk.getText().length()!=0  )
+                Simpan.setEnabled(true);    
+    }//GEN-LAST:event_txtTglMasukCaretUpdate
 
     /**
      * @param args the command line arguments
@@ -679,6 +746,7 @@ public class rumahSakit extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;

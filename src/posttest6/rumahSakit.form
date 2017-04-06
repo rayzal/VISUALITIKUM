@@ -183,7 +183,11 @@
                               </Group>
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtUsia" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtUsia" min="-2" pref="41" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <Component id="txtNama" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtTL" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
@@ -235,6 +239,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtUsia" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -314,6 +319,9 @@
                 <Property name="toolTipText" type="java.lang.String" value="format penulisan tanggal :&#xa;2017-04-10"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtTLCaretUpdate"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNama">
               <Properties>
@@ -322,6 +330,9 @@
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtNamaCaretUpdate"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtUsia">
               <Properties>
@@ -331,6 +342,7 @@
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
+                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtUsiaCaretUpdate"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtUsiaKeyTyped"/>
               </Events>
             </Component>
@@ -399,7 +411,7 @@
                       <Color blue="99" green="ff" red="cc" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                      <StringArray count="7">
+                      <StringArray count="12">
                         <StringItem index="0" value="Kanker "/>
                         <StringItem index="1" value="TBC"/>
                         <StringItem index="2" value="Alergi"/>
@@ -407,6 +419,11 @@
                         <StringItem index="4" value="Miopi"/>
                         <StringItem index="5" value="Diabetes Melitus"/>
                         <StringItem index="6" value="Asam Urat"/>
+                        <StringItem index="7" value="Demam"/>
+                        <StringItem index="8" value="Diare"/>
+                        <StringItem index="9" value="Sakit Hati"/>
+                        <StringItem index="10" value="Galau"/>
+                        <StringItem index="11" value="Sakit Gigi"/>
                       </StringArray>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
@@ -442,6 +459,9 @@
                 <Property name="toolTipText" type="java.lang.String" value="format penulisan tanggal :&#xa;2017-04-10"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtTglMasukCaretUpdate"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="cmbDokter">
               <Properties>
@@ -480,6 +500,14 @@
                   <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="* Format YYYY-MM-DD"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel9">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Tahun"/>
               </Properties>
             </Component>
           </SubComponents>
