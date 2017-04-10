@@ -594,7 +594,7 @@ public class rumahSakit extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Nama Sudah ada ");
             }
             else{
-            TambahData(nama,tgllahir,usia,jk,diagnosa,dokter,ruangan,tglmasuk);
+                TambahData(nama,tgllahir,usia,jk,diagnosa,dokter,ruangan,tglmasuk);
             InitTable();
             TampilData();
             JOptionPane.showMessageDialog(this, "Berhasil Simpan Data");
