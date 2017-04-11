@@ -6,6 +6,7 @@
 package posttest7;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -41,7 +42,21 @@ public class FormDataBuku extends javax.swing.JFrame {
         
         jTable1.setModel(model);
     }
-    private boolean validasi(String judul, String penulis){
+    private boolean validasiDua(String judul, String penulis, String harga){
+        try {
+            stt = con.createStatement();
+            String sql = "SELECT * FROM buku WHERE judul='"+judul+"' AND penulis='"+penulis+"' AND harga='"+harga+"' ";
+            rss = stt.executeQuery(sql);
+            if(rss.next())
+                return true;
+            else 
+                return false;
+        } catch (SQLException e) {
+            System.out.print(e.getMessage());
+            return false;
+        }
+    }
+     private boolean validasi(String judul, String penulis){
         try {
             stt = con.createStatement();
             String sql = "SELECT * FROM buku WHERE judul='"+judul+"' AND penulis='"+penulis+"' ";
@@ -55,7 +70,7 @@ public class FormDataBuku extends javax.swing.JFrame {
             return false;
         }
     }
-    
+   
     
      private void TampilData(){
         try{
@@ -90,7 +105,7 @@ public class FormDataBuku extends javax.swing.JFrame {
 //        int baris = jTable1.getSelectedRow();
         try{
             
-            String sql = "UPDATE buku SET judul =' "+judul+" ', penulis=' "+penulis+" ', harga="+harga+"  WHERE id="+id+";";
+            String sql = "UPDATE buku SET judul ='"+judul+"', penulis='"+penulis+"', harga="+harga+"  WHERE id="+id+";";
             stt = con.createStatement();
             stt.executeUpdate(sql);
             return true;
@@ -213,9 +228,15 @@ public class FormDataBuku extends javax.swing.JFrame {
                 txtHargaActionPerformed(evt);
             }
         });
+        txtHarga.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHargaKeyTyped(evt);
+            }
+        });
 
         btn_Simpan.setBackground(new java.awt.Color(153, 204, 0));
         btn_Simpan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_Simpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/posttest7/bullet_disk.png"))); // NOI18N
         btn_Simpan.setText("SIMPAN");
         btn_Simpan.setEnabled(false);
         btn_Simpan.addActionListener(new java.awt.event.ActionListener() {
@@ -226,6 +247,7 @@ public class FormDataBuku extends javax.swing.JFrame {
 
         btn_Update.setBackground(new java.awt.Color(153, 204, 0));
         btn_Update.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_Update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/posttest7/reply.png"))); // NOI18N
         btn_Update.setText("UPDATE");
         btn_Update.setEnabled(false);
         btn_Update.addActionListener(new java.awt.event.ActionListener() {
@@ -236,6 +258,7 @@ public class FormDataBuku extends javax.swing.JFrame {
 
         btn_Hapus.setBackground(new java.awt.Color(153, 204, 0));
         btn_Hapus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_Hapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/posttest7/delete.png"))); // NOI18N
         btn_Hapus.setText("HAPUS");
         btn_Hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,6 +268,7 @@ public class FormDataBuku extends javax.swing.JFrame {
 
         btn_Keluar.setBackground(new java.awt.Color(153, 204, 0));
         btn_Keluar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_Keluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/posttest7/door.png"))); // NOI18N
         btn_Keluar.setText("KELUAR");
         btn_Keluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,6 +278,7 @@ public class FormDataBuku extends javax.swing.JFrame {
 
         btn_Ulangi.setBackground(new java.awt.Color(153, 204, 0));
         btn_Ulangi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_Ulangi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/posttest7/arrow_refresh.png"))); // NOI18N
         btn_Ulangi.setText("ULANG");
         btn_Ulangi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,11 +289,6 @@ public class FormDataBuku extends javax.swing.JFrame {
         txtCari.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtCariCaretUpdate(evt);
-            }
-        });
-        txtCari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCariKeyTyped(evt);
             }
         });
 
@@ -299,14 +319,14 @@ public class FormDataBuku extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(comboPenulis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btn_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_Hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16)
+                                .addComponent(btn_Update)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_Hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn_Ulangi, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_Keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))
+                        .addComponent(btn_Keluar)
+                        .addGap(18, 18, 18))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtHarga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
@@ -447,22 +467,18 @@ public class FormDataBuku extends javax.swing.JFrame {
         String judul = txtJudul.getText();
         String penulis= comboPenulis.getSelectedItem().toString();
         String harga = txtHarga.getText();
-        if(UbahData(id,judul,penulis,harga))
+        
+         if(validasiDua(judul,penulis,harga)){
+                JOptionPane.showMessageDialog(this, "Judul dengan pengarang yang sama Sudah ada");
+            }else {
+                if(UbahData(id,judul,penulis,harga))
             JOptionPane.showMessageDialog(null, "Data Berhasil Di Update");
-        else
+                else
             JOptionPane.showMessageDialog(null, "gagal ubah data");
         InitTable();TampilData();
-            
-//        try {
-//            jTable1.setValueAt(txtJudul.getText(), baris, 0);
-//            jTable1.setValueAt(comboPenulis.getSelectedItem(), baris, 1);
-//            jTable1.setValueAt(txtHarga.getText(), baris, 2);
-//            
-//
-//            JOptionPane.showMessageDialog(this, "Data Berhasil Di Update");
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, "Maaf, Silahkan Pilih Data Yang Ingin Diupdate Terlebih Dahulu");
-//        }
+         }
+  
+          
     }//GEN-LAST:event_btn_UpdateActionPerformed
 
     private void btn_HapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HapusActionPerformed
@@ -473,18 +489,7 @@ public class FormDataBuku extends javax.swing.JFrame {
         else
             JOptionPane.showMessageDialog(null, "Gagal Hapus data");
         InitTable();TampilData();
-//        int pilih = JOptionPane.showConfirmDialog(this, "Ingin Menghapus Data?","Confirm Hapus",JOptionPane.YES_OPTION);
-//        //        int pilih = JOptionPane.showConfirmDialog(this, "Ingin Hapus","Confirm Hapus",JOptionPane.INFORMATION_MESSAGE,3);
-//
-//        if(pilih==JOptionPane.YES_OPTION){
-//            try {
-//                int baris = jTable1.getSelectedRow();
-//                model.removeRow(baris);
-//                JOptionPane.showMessageDialog(this, "Data Dengan"+"\nJudul : "+txtJudul.getText()+"\nPenulis : "+comboPenulis.getSelectedItem()+"\nHarga : "+txtHarga.getText()+"\nBerhasil Dihapus");
-//            } catch (Exception e) {
-//                JOptionPane.showMessageDialog(this, "Tidak Ada Data Yang Dipilih Untuk Dihapus");
-//            }
-//        }
+
     }//GEN-LAST:event_btn_HapusActionPerformed
 
     private void PencarianData(String by, String cari){
@@ -520,31 +525,6 @@ public class FormDataBuku extends javax.swing.JFrame {
         txtJudul.requestFocus();
         
     }//GEN-LAST:event_btn_UlangiActionPerformed
-
-    private void txtCariKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyTyped
-//        model.getDataVector().removeAllElements();
-//        model.fireTableDataChanged();
-//        String caridengan = combocari.getSelectedItem().toString();
-//        try {
-//
-//            String sql="select * from buku where "+caridengan+" like '%"+txtCari.getText()+"%'";
-//            stt = con. createStatement();
-//            rss = stt. executeQuery(sql);
-//            ResultSet rss=stt.executeQuery(sql);
-//            while (rss.next()) {
-//                Object[] o=new Object[3];
-//                o[0]=rss.getString("JUDUL");
-//                o[1]=rss.getString("PENULIS");
-//                o[2]=rss.getString("HARGA");
-//
-//                model.addRow(o);
-//            }
-//            stt.close();
-//            rss.close();
-//        }catch(SQLException e) {
-//            System.out.println("Terjadi kesalahan");
-//        }
-    }//GEN-LAST:event_txtCariKeyTyped
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int baris = jTable1.getSelectedRow();
@@ -599,6 +579,16 @@ public class FormDataBuku extends javax.swing.JFrame {
                   btn_Update.setEnabled(true);
             }      
     }//GEN-LAST:event_txtHargaCaretUpdate
+
+    private void txtHargaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHargaKeyTyped
+        // TODO add your handling code here:
+                         char karakter = evt.getKeyChar();
+     if(!(((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE)))){
+            JOptionPane.showMessageDialog(null, "masukan hanya angka saja");
+    getToolkit().beep();
+    evt.consume();
+       }
+    }//GEN-LAST:event_txtHargaKeyTyped
 
     /**
      * @param args the command line arguments
